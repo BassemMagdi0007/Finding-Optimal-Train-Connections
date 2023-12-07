@@ -11,7 +11,7 @@ This repository contains a Python implementation for optimizing transportation s
   - How to run the code
   - Used libraries
 - [Code Structure](#code-structure)
-- [Design Decision](#design-decision)
+- [Self Evaluation and Design Decisions](#design-decision)
 - [Output Format](#output-format)
 - [Important Note](#important-note)
 - [Use Cases](#use-cases)
@@ -119,15 +119,21 @@ If the priority queue becomes empty and the destination is not reached, the func
 - **Cost Functions:**
 The function supports different cost functions such as 'stops', 'distance', 'price' and 'arrivaltime'. The cost is updated accordingly based on the chosen cost function.
 
-## Design Decision
+## Self Evaluation and Design Decisions
 Check if a certain station was visited on which train before marking it as visited
 
 Before: Parse problem examples and formulate the data dectionary (read stations csv file) with every problem.
 
 After: 
 - Calculate the data dectionary for mini-schedule and schedule once  
-- saved 200 seconds run time 
+- saved 200 seconds run time
 
+SCORE:
+
+Total points scored on the 'example-problems.csv'
+```python 
+TOTAL POINTS: 79
+```
 
 ## Output Format
 
@@ -140,11 +146,11 @@ After:
 
 The script generates the output in a table format where:
 
-**First column:** Problem number.
+- **First column:** Problem number.
 
-**Second column:** The trains used to reach from the start station to the desired station, and the staions they passed on the way.
+- **Second column:** The trains used to reach from the start station to the desired station, and the staions they passed on the way.
 
-**Thied column:** The cost score for each problem, it varies according to diffrent 'cost functions'.
+- **Thied column:** The cost score for each problem, it varies according to diffrent 'cost functions'.
 
 ## Important Note
 problem 75
