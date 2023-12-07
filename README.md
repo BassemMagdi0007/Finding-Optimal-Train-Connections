@@ -13,9 +13,7 @@ This repository contains a Python implementation for optimizing transportation s
 - [Code Structure](#code-structure)
 - [Self Evaluation and Design Decisions](#design-decision)
 - [Output Format](#output-format)
-- [Important Note](#important-note)
 - [Use Cases](#use-cases)
-- [License](#license)
 
 ## Introduction
 
@@ -64,7 +62,7 @@ from datetime import datetime
 # INPUT: mini-schedule.csv or schedule.csv
 # OUTPUT: adjust lists used to create the data dictionary 
 def readCSV(csvName):
-# ...
+    # ...
 ```
 - **_First_**, The readCSV function parses the CSV file whose name is passed to it as an argument 'csvPath', and assigns it into a Pandas DataFrame called 'csv'.
 
@@ -74,7 +72,7 @@ def readCSV(csvName):
 ```python
 # Iterate over the trains 'lst' fetched from the CSV file and extracts the distinct trains
 def find_distinct_elements(lst):
-# ...
+    # ...
 ```
 - **_Fourth_**, based on the previous generated lists, it creates new lists containing all possible information for each single train,  such as its 'arrival time', 'departure time', 'source stations', 'target stations', etc.. .
 
@@ -120,15 +118,24 @@ If the priority queue becomes empty and the destination is not reached, the func
 The function supports different cost functions such as 'stops', 'distance', 'price' and 'arrivaltime'. The cost is updated accordingly based on the chosen cost function.
 
 ## Self Evaluation and Design Decisions
-Check if a certain station was visited on which train before marking it as visited
+- On the creation of the graph we focused on assigning to each distinct train the values associated to it such as 'source station', 'end station', 'arrival time' and 'departure time' on both start station and end station, etc. and passing those givings to a dictioniry.
+- Within the dijkstra function we use the `zip()` function and pass to it the values of the previously created dictionary resulting the following form: 
+```python
+# SGRL is the current station (islno 1)
+# Next station is OBR (islno 2)
+# Train 13346 is used to connect between those two adjacent stations
+# The train arrives at station SGRL at '00:00:00' and departs from it at '05:45:00'
+# Then the train arrives at station OBR at '07:09:00' and departs from it at '07:10:00'
+['SGRL' : ('OBR', 0, "'13346'", 1, 2, "'00:00:00'", "'05:45:00'", "'07:09:00'", "'07:10:00'")]
+```
+- When applying the dijkstra function we encountere a small problem, that the algorithm neglets the shared stations such as 'BSB' if it was visited only once by ANY train when traversing for the solution to find the shortest path available to reach the Goal station; since, when the station is visited the function immediately adds it to the 'visited' list neglecting that the station can also be visited with other trains.
+To tackle this problem we had to check if a certain station was visited on which train before marking it as visited
+```python
+if (current_node, last_train_number) not in visited:
+    # ...
+```
 
-Before: Parse problem examples and formulate the data dectionary (read stations csv file) with every problem.
-
-After: 
-- Calculate the data dectionary for mini-schedule and schedule once  
-- saved 200 seconds run time
-
-SCORE:
+**SCORE:**
 
 Total points scored on the 'example-problems.csv'
 ```python 
@@ -151,14 +158,3 @@ The script generates the output in a table format where:
 - **Second column:** The trains used to reach from the start station to the desired station, and the staions they passed on the way.
 
 - **Thied column:** The cost score for each problem, it varies according to diffrent 'cost functions'.
-
-## Important Note
-problem 75
-
-## Use Cases
-
-- **Transportation Optimization:** Transportation authorities can use the script to optimize train routes, minimizing travel time, reducing costs, or improving passenger convenience.
-
-- **Research and Analysis:** Researchers and analysts can leverage the script to study the dynamics of train schedules, exploring the impact of different cost factors on the overall network.
-
-- **Educational Tool:** The script serves as an educational tool for computer science students studying algorithms, graph theory, and optimization techniques. It provides practical insights into the application of Dijkstra's algorithm in real-world scenarios.
