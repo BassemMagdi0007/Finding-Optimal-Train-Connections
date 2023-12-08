@@ -121,7 +121,12 @@ The function supports different cost functions such as 'stops', 'distance', 'pri
 
 ## Self Evaluation and Design Decisions
 - On the creation of the graph we focused on assigning to each distinct train the values associated to it such as 'source station', 'end station', 'arrival time' and 'departure time' on both start station and end station, etc. and passing those givings to a dictioniry.
-- Within the dijkstra function we use the `zip()` function and pass to it the values of the previously created dictionary resulting the following form: 
+- Within the dijkstra function we use the `zip()` function and pass to it the values of the previously created dictionary
+```python
+zip(data['source'], data['target'], data['weight'], data['train_number'], data['src_seq'], data['tar_seq'], data['arrivalTime_start'], data['departureTime_start'], data['arrivalTime_end'], data['departureTime_end'])
+    # ...
+```
+resulting the following form: 
 ```python
 # SGRL is the current station (islno 1)
 # Next station is OBR (islno 2)
@@ -136,6 +141,15 @@ To tackle this problem we had to check if a certain station was visited on which
 if (current_node, last_train_number) not in visited:
     # ...
 ```
+- Design Decision:
+Originally, the code parsed the problem examples and formulated the data dictionary by reading the stations CSV file for every problem instance. This approach resulted in repetitive computations and increased runtime.
+To enhance efficiency, a design decision was made to calculate the data dictionary for both the mini-schedule and schedule only once during the program's execution. This design change saved approximately 250 seconds of runtime; from running the entire problems.csv file with its 'mini-schedule' and 'schedule' from `1407.296 seconds` to `1141.979 seconds` , as it eliminated the need to repeatedly process the same data for each problem instance.
+By precomputing the data dictionary, the program avoids redundant computations and significantly improves overall execution speed. This optimization contributes to a more streamlined and efficient solution for the given problem set.
+
+- We were to utilise 'NetworkX' for creating and analyzing graphs in our train connection problem solution. NetworkX's default Dijkstra's algorithm implementation streamlined pathfinding.
+The `nx.DiGraph` class allowed us to model directed train connections, and `add_edge` efficiently connected adjacent nodes. For finding the shortest path, we employed `nx.shortest_path` with Dijkstra's algorithm.
+However, the challenge arose in customizing Dijkstra's algorithm during distance cost function calculations. NetworkX's built-in nature limited adaptability, leading to discrepancies in some distance values. we had to pivot from this approach. Instead, we adopted a custom Dijkstra function `dijkstra_shortest_path`, allowing more flexibility and resolving the issues we encountered.
+
 
 **SCORE:**
 
