@@ -120,8 +120,8 @@ If the priority queue becomes empty and the destination is not reached, the func
 The function supports different cost functions such as 'stops', 'distance', 'price' and 'arrivaltime'. The cost is updated accordingly based on the chosen cost function.
 
 ## Self Evaluation and Design Decisions
-- On the creation of the graph we focused on assigning to each distinct train the values associated to it such as 'source station', 'end station', 'arrival time' and 'departure time' on both start station and end station, etc. and passing those givings to a dictioniry.
-- Within the dijkstra function we use the `zip()` function and pass to it the values of the previously created dictionary
+- On the creation of the graph I focused on assigning to each distinct train the values associated to it such as 'source station', 'end station', 'arrival time' and 'departure time' on both start station and end station, etc. and passing those givings to a dictioniry.
+- Within the dijkstra function I use the `zip()` function and pass to it the values of the previously created dictionary
 ```python
 zip(data['source'], data['target'], data['weight'], data['train_number'], data['src_seq'], data['tar_seq'], data['arrivalTime_start'], data['departureTime_start'], data['arrivalTime_end'], data['departureTime_end'])
     # ...
@@ -135,8 +135,8 @@ resulting the following form:
 # Then the train arrives at station OBR at '07:09:00' and departs from it at '07:10:00'
 ['SGRL' : ('OBR', 0, "'13346'", 1, 2, "'00:00:00'", "'05:45:00'", "'07:09:00'", "'07:10:00'")]
 ```
-- When applying the dijkstra function we encountere a small problem, that the algorithm neglets the shared stations such as 'BSB' if it was visited only once by ANY train when traversing for the solution to find the shortest path available to reach the Goal station; since, when the station is visited the function immediately adds it to the 'visited' list neglecting that the station can also be visited with other trains.
-To tackle this problem we had to check if a certain station was visited on which train before marking it as visited
+- When applying the dijkstra function I encountere a small problem, that the algorithm neglets the shared stations such as 'BSB' if it was visited only once by ANY train when traversing for the solution to find the shortest path available to reach the Goal station; since, when the station is visited the function immediately adds it to the 'visited' list neglecting that the station can also be visited with other trains.
+To tackle this problem I had to check if a certain station was visited on which train before marking it as visited
 ```python
 if (current_node, last_train_number) not in visited:
     # ...
@@ -151,9 +151,9 @@ By precomputing the data dictionary, the program avoids redundant computations a
 - For 'Stops' cost functions (weight = 1) and 'Distance' cost functions (weight = difference between the next and current stations), the new cost is calculated by adding the weight to the current cost. On the other hand, for the 'price' cost function, the new cost is determined by adding the weight to the current cost in the case of the same train, and adding the weight to the current cost plus 1 in the event of train changes or passing midnight. These computations ensure precise cost determination, addressing diverse scenarios in the train connection problem comprehensively.
 
 
-- We were to utilise 'NetworkX' for creating and analyzing graphs in our train connection problem solution. NetworkX's default Dijkstra's algorithm implementation streamlined pathfinding.
-The `nx.DiGraph` class allowed us to model directed train connections, and `add_edge` efficiently connected adjacent nodes. For finding the shortest path, we employed `nx.shortest_path` with Dijkstra's algorithm.
-However, the challenge arose in customizing Dijkstra's algorithm during distance cost function calculations. NetworkX's built-in nature limited adaptability, leading to discrepancies in some distance values. we had to pivot from this approach. Instead, we adopted a custom Dijkstra function `dijkstra_shortest_path`, allowing more flexibility and resolving the issues we encountered.
+- I were to utilise 'NetworkX' for creating and analyzing graphs in our train connection problem solution. NetworkX's default Dijkstra's algorithm implementation streamlined pathfinding.
+The `nx.DiGraph` class allowed us to model directed train connections, and `add_edge` efficiently connected adjacent nodes. For finding the shortest path, I employed `nx.shortest_path` with Dijkstra's algorithm.
+However, the challenge arose in customizing Dijkstra's algorithm during distance cost function calculations. NetworkX's built-in nature limited adaptability, leading to discrepancies in some distance values. I had to pivot from this approach. Instead, I adopted a custom Dijkstra function `dijkstra_shortest_path`, allowing more flexibility and resolving the issues I encountered.
 
 
 **SCORE:**
