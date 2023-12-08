@@ -27,14 +27,15 @@ The primary purpose of this script is to address the challenges associated with 
 
 ## Setup
 ### This repository contains:
- 1) **`train_connections.py`**: That contains the implementation for solving the train connection problem. It includes functions for reading train schedule data from CSV files, applying Dijkstra's algorithm with various cost functions, and writing the results to a CSV file.
+ 1) **`Find_best_train_connection.py`**: That contains the implementation for solving the train connection problem. It includes functions for reading train schedule data from CSV files, applying Dijkstra's algorithm with various cost functions, and writing the results to a CSV file.
  2) **`solutions.csv`**: solutions for the "problem.csv" file
 
 ### How to run the code: 
 
 1. Import pandas as pd, import heapq, from datetime import datetime.
-2. **problem.csv** and **`train_connections.py`** must be in the same folder.
-3. Run **`train_connections.py`**.
+2. **problem.csv** and **`Find_best_train_connection.py`** must be in the same folder.
+3. The dataset must be placed inside a folder named 'assignment', both the folder and the file **`Find_best_train_connection.py`** must be in the same folder.
+4. Run **`Find_best_train_connection.py`**.
 ### Used libraries:
 
 **_heapq:_**
