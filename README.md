@@ -170,7 +170,7 @@ The script generates the output in a table format where:
 - **Educational Tool:** The script serves as an educational tool for computer science students studying algorithms, graph theory, and optimization techniques. It provides practical insights into the application of Dijkstra's algorithm in real-world scenarios.
 
 
-## Licence 
+## License 
 
 MIT License
 
