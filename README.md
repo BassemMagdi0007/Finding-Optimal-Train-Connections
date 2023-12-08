@@ -146,15 +146,19 @@ Originally, the code parsed the problem examples and formulated the data diction
 To enhance efficiency, a design decision was made to calculate the data dictionary for both the mini-schedule and schedule only once during the program's execution. This design change saved approximately 250 seconds of runtime; from running the entire problems.csv file with its 'mini-schedule' and 'schedule' from `1407.296 seconds` to `1141.979 seconds` , as it eliminated the need to repeatedly process the same data for each problem instance.
 By precomputing the data dictionary, the program avoids redundant computations and significantly improves overall execution speed. This optimization contributes to a more streamlined and efficient solution for the given problem set.
 
+- The code segment deals with different cases in calculating the new_cost To handle the 'arrivaltime' cost function. The code distinguishes between the first train, train changes and the continuation of the same train. **In the case of the first train**: it manages the wait time at the station from the specified arrival time until the departure of the very first train, along with computing the travel time between the first two stations. **For train changes**: the code calculates both waiting time from the arrival at one station until the departure of the next train and the travel time associated with changing trains. **In the case of the same train continuing**: the code precisely determines the travel time between the arrival time at the current station and the next if these stations were part of the same train route. Negative values are adjusted for midnight changes resulting in adding a day `24 * 60`.
+  
+- For 'Stops' cost functions (weight = 1) and 'Distance' cost functions (weight = difference between the next and current stations), the new cost is calculated by adding the weight to the current cost. On the other hand, for the 'price' cost function, the new cost is determined by adding the weight to the current cost in the case of the same train, and adding the weight to the current cost plus 1 in the event of train changes or passing midnight. These computations ensure precise cost determination, addressing diverse scenarios in the train connection problem comprehensively.
+
+
 - We were to utilise 'NetworkX' for creating and analyzing graphs in our train connection problem solution. NetworkX's default Dijkstra's algorithm implementation streamlined pathfinding.
 The `nx.DiGraph` class allowed us to model directed train connections, and `add_edge` efficiently connected adjacent nodes. For finding the shortest path, we employed `nx.shortest_path` with Dijkstra's algorithm.
 However, the challenge arose in customizing Dijkstra's algorithm during distance cost function calculations. NetworkX's built-in nature limited adaptability, leading to discrepancies in some distance values. we had to pivot from this approach. Instead, we adopted a custom Dijkstra function `dijkstra_shortest_path`, allowing more flexibility and resolving the issues we encountered.
 
 
 **SCORE:**
-
-Total points scored on the 'example-problems.csv'
-```python 
+```python
+# Total points scored on the 'example-problems.csv'
 TOTAL POINTS: 79
 ```
 
