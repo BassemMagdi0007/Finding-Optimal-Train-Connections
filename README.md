@@ -14,6 +14,7 @@ This repository contains a Python implementation for optimizing transportation s
 - [Self Evaluation and Design Decisions](#design-decision)
 - [Output Format](#output-format)
 - [Use Cases](#use-cases)
+- [License](#license)
 
 ## Introduction
 
@@ -159,3 +160,38 @@ The script generates the output in a table format where:
 - **Second column:** The trains used to reach from the start station to the desired station, and the staions they passed on the way.
 
 - **Thied column:** The cost score for each problem, it varies according to diffrent 'cost functions'.
+
+## Use Cases
+
+- **Transportation Optimization:** Transportation authorities can use the script to optimize train routes, minimizing travel time, reducing costs, or improving passenger convenience.
+
+- **Research and Analysis:** Researchers and analysts can leverage the script to study the dynamics of train schedules, exploring the impact of different cost factors on the overall network.
+
+- **Educational Tool:** The script serves as an educational tool for computer science students studying algorithms, graph theory, and optimization techniques. It provides practical insights into the application of Dijkstra's algorithm in real-world scenarios.
+
+
+## Licence 
+
+MIT License
+
+Copyright (c) [year] [fullname]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
