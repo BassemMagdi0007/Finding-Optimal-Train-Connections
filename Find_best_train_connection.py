@@ -12,7 +12,6 @@ csv = pd.read_csv(csvPath)
 #csv = pd.read_csv('assignment/schedule.csv')
 #data = pd.read_csv('your_file.csv', skiprows=[0])
 
-
 #___________________________________grab trains info________________________________________________
 def find_distinct_elements(lst):
     seen = set()
